@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import clsx from 'clsx';
 import { ArrowButton } from '../../ui/arrow-button';
 import { Button } from '../../ui/button';
 import { RadioGroup } from '../../ui/radio-group';
@@ -49,9 +50,7 @@ export const ArticleParamsForm = ({
 					onClick={() => setIsMenuOpen(false)}></div>
 			)}
 			<aside
-				className={`${styles.container} ${
-					isMenuOpen ? styles.container_open : ''
-				}`}>
+				className={clsx(styles.container, isMenuOpen && styles.container_open)}>
 				<form className={styles.form} onSubmit={handleApply}>
 					<h2 className={styles.title}>Задайте параметры</h2>
 					<div className={styles.formGroup}>
