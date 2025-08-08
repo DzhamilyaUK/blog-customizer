@@ -21,13 +21,13 @@ export const ArticleParamsForm = ({
 }: {
 	onApply: (state: ArticleStateType) => void;
 }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const [formState, setFormState] =
 		useState<ArticleStateType>(defaultArticleState);
 
 	const handleToggleSidebar = () => {
-		setIsOpen((prevState) => !prevState);
+		setIsMenuOpen((prevState) => !prevState);
 	};
 
 	const handleReset = () => {
@@ -37,18 +37,20 @@ export const ArticleParamsForm = ({
 	const handleApply = (event: React.FormEvent) => {
 		event.preventDefault();
 		onApply(formState);
-		setIsOpen(false);
+		setIsMenuOpen(false);
 	};
 
 	return (
 		<>
-			<ArrowButton isOpen={isOpen} onClick={handleToggleSidebar} />
-			{isOpen && (
-				<div className={styles.overlay} onClick={() => setIsOpen(false)}></div>
+			<ArrowButton isOpen={isMenuOpen} onClick={handleToggleSidebar} />
+			{isMenuOpen && (
+				<div
+					className={styles.overlay}
+					onClick={() => setIsMenuOpen(false)}></div>
 			)}
 			<aside
 				className={`${styles.container} ${
-					isOpen ? styles.container_open : ''
+					isMenuOpen ? styles.container_open : ''
 				}`}>
 				<form className={styles.form} onSubmit={handleApply}>
 					<h2 className={styles.title}>Задайте параметры</h2>
